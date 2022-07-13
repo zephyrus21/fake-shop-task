@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
 
 const Product = () => {
   let { id } = useParams();
-  const [product, setProduct] = useState({});
-
-  const getOneItem = async (id) => {
-    const data = await fetch("https://fakestoreapi.com/products/" + id);
-    setProduct(await data.json());
-  };
-
-  useEffect(() => {
-    getOneItem(id);
-  }, []);
+  const [data, isLoading] = useFetch(false, id);
 
   return (
     <div>
-      {product.id ? (
-        <div>
-          <h1>{product.title}</h1>
-          <p>{product.description}</p>
-          <p>{product.price}</p>
-        </div>
+      {isLoading ? (
+        <>Loading!!!</>
       ) : (
-        <div>Loading...</div>
+        <>
+          <h1>{data.title}</h1>
+          <p>{data.description}</p>
+          <p>{data.price}</p>
+        </>
       )}
     </div>
   );
