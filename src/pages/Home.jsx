@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <Layout>
       {isLoading ? (
-        <div class='d-flex justify-content-center align-items-center vh-100'>
-          <div class='spinner-border' role='status'></div>
+        <div className='d-flex justify-content-center align-items-center vh-100'>
+          <div className='spinner-border' role='status'></div>
         </div>
       ) : (
         <>
